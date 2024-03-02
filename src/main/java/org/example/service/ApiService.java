@@ -3,8 +3,6 @@ package org.example.service;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
 import lombok.extern.slf4j.Slf4j;
-import org.example.dao.BookRepository;
-import org.example.entity.Book;
 import org.example.pojo.AggregateRequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -13,27 +11,21 @@ import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
-public class BookService {
+public class ApiService {
 
     private final MongoTemplate mongoTemplate;
-    private final BookRepository bookRepository;
 
     @Autowired
     private MeterRegistry meterRegistry;
 
     @Autowired
-    public BookService(MongoTemplate mongoTemplate, BookRepository bookRepository) {
+    public ApiService(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
-        this.bookRepository = bookRepository;
     }
 
-    public Book createBook(Book book) {
-        return bookRepository.save(book);
-    }
 
     public List<String> getForAggregation()
     {
@@ -66,20 +58,5 @@ public class BookService {
                     .publishPercentiles(0.5, 0.95, 0.99)
                     .register(meterRegistry));
             return results.getMappedResults();
-    }
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
-    }
-
-    public Optional<Book> getBookById(String id) {
-        return bookRepository.findById(id);
-    }
-
-    public Book updateBook(Book book) {
-        return bookRepository.save(book);
-    }
-
-    public void deleteBook(String id) {
-        bookRepository.deleteById(id);
     }
 }

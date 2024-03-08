@@ -41,4 +41,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-.idea/**
+.idea/
+__pycache__/
+.idea/gradle.xml
+.idea/misc.xml
+.idea/workspace.xml

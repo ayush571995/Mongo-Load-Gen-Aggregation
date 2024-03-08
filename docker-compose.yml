@@ -7,6 +7,20 @@ services:
     environment:
       MONGODB_URL:
 
+  locust:
+    build:
+      context: locust/
+      dockerfile: Dockerfile
+    ports:
+      - "8089:8089"
+    environment:
+      OP_NAME: 'toLower'
+      COLLECTION: 'toLower'
+      RESULT_FIELD: 'toLowerField'
+      EXPRESSION: "{$$toLower: '$$a' }"
+    depends_on:
+      - app
+
   prometheus:
     image: prom/prometheus:latest
     volumes:
@@ -15,6 +29,7 @@ services:
       - "9090:9090"
     depends_on:
       - app
+
   grafana:
     image: grafana/grafana:latest
     ports:

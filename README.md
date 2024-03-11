@@ -17,7 +17,7 @@
 docker-compose build
 
 # To run
-docker-compose run
+docker-compose up
 ```
 * Once, started you can put load using locust . You need to go to localhost:8090 and provide the params for the load.
 * Note:- For putting load on localhost you should use url : http://host.docker.internal:8080

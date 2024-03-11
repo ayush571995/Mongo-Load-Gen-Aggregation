@@ -8,7 +8,8 @@
 # Run
 
 * This is a dockerized application .
-* All you need to do is get the mongodb url and update in the docker-compose file env variable
+* All you need to do is get the mongodb url and update in the docker-compose file env variable.
+  Note:- When adding the mongodb url make sure to add database name in the connection string in case it's not there.   
 * Also, you need to identify the aggregation query expression and update in the application params
 * I have already put the example of toLower aggregation operator in docker-compose file. As ,a requirement in docker-compose every dollar-sign needs to be escaped using a $ sign
 * You need to have the data in place for your collection so, put the required params in docker-compose for collectionName, opName, resultField, expression.

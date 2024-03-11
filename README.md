@@ -25,4 +25,6 @@ docker-compose up
 ## Metrics
 
 * You can view metrics in grafa directly on localhost:3000
+* This is your metrics around the round trip time for the application to make a call to the mongo and get the response.
+* If you want e2e client side metrics you can use locust charts
 

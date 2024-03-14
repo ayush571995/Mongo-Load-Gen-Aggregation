@@ -1,11 +1,16 @@
 version: '3.8'
+
+x-environment:
+  &default-environment
+  MONGODB_URL:
+  COLLECTION: 'toLower'
 services:
   app:
     build: .
     ports:
       - "8080:8080"
     environment:
-      MONGODB_URL:
+      <<: *default-environment
 
   locust:
     build:
@@ -14,12 +19,23 @@ services:
     ports:
       - "8089:8089"
     environment:
+      <<: *default-environment
       OP_NAME: 'toLower'
-      COLLECTION: 'toLower'
       RESULT_FIELD: 'toLowerField'
-      EXPRESSION: "{$$toLower: '$$a' }"
+      EXPRESSION: "{$$toLower: '$$name' }"
     depends_on:
       - app
+
+  data-gen:
+    build:
+      context: data-gen/
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      <<: *default-environment
+    depends_on:
+      - locust
 
   prometheus:
     image: prom/prometheus:latest

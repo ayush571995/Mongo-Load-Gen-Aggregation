@@ -21,6 +21,11 @@
 ## Data-Gen
 * This runs as a python application based on streamlit on port 8501.
 * It has support for uploading data as well.
+* If you have a predefined Json data from mongoexport utility you can use section **_Upload Data_**
+* Now , you can also specify the index template as a json. It takes in fields as 
+```
+{"field" : <name of field to index on> ,"type": <ascending or descending> and "unique": <true or false>}
+```
 
 This is a structure of json you can write inside the json editor and click on generate document. 
 You can find the full list of the allowed fields at value_generator.py
@@ -35,6 +40,23 @@ You can find the full list of the allowed fields at value_generator.py
 .. etc
 }
 ```
+### Complete List of fake data template supported
+* name
+* email
+* address
+* date
+* int
+* double
+* bool
+* latitude
+* longitude
+* unix_epoch
+* array
+* name
+* phone
+* city
+* country
+* pincode
 
 # To build the docker images
 docker-compose build

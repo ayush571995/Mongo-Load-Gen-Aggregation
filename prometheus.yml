@@ -6,3 +6,7 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['app:8080']
+  - job_name: 'spring-boot-native'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['native-app:8081']

@@ -4,6 +4,9 @@ x-environment:
   &default-environment
   MONGODB_URL:
   COLLECTION: 'toLower'
+  OP_NAME: 'toLower'
+  RESULT_FIELD: 'toLowerField'
+  EXPRESSION: "{$$toLower: '$$name' }"
 services:
   app:
     build: .
@@ -20,11 +23,28 @@ services:
       - "8089:8089"
     environment:
       <<: *default-environment
-      OP_NAME: 'toLower'
-      RESULT_FIELD: 'toLowerField'
-      EXPRESSION: "{$$toLower: '$$name' }"
     depends_on:
       - app
+
+  native-app:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      <<: *default-environment
+      MONGODB_URL : 
+      SERVER_PORT: 8081
+
+  native-app-locust:
+    build:
+      context: locust/
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8089"
+    environment:
+      <<: *default-environment
+    depends_on:
+      - native-app
 
   data-gen:
     build:

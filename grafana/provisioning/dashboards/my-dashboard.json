@@ -91,8 +91,7 @@
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -122,7 +121,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum by (operation) (rate(mongodb_operation_time_seconds_count{instance=\"app:8080\", job=\"spring-boot\"}[3m]))",
+          "expr": "sum by (operation, instance) (rate(mongodb_operation_time_seconds_count[3m]))",
           "instant": false,
           "interval": "",
           "legendFormat": "__auto",
@@ -203,8 +202,7 @@
               }
             ]
           },
-          "unit": "s",
-          "unitScale": true
+          "unit": "s"
         },
         "overrides": []
       },
@@ -301,8 +299,7 @@
               }
             ]
           },
-          "unit": "s",
-          "unitScale": true
+          "unit": "s"
         },
         "overrides": []
       },
@@ -339,7 +336,7 @@
           "refId": "A"
         }
       ],
-      "title": "DB Call latency P 50",
+      "title": "DB Call latency P 95",
       "type": "timeseries"
     },
     {
@@ -399,8 +396,7 @@
               }
             ]
           },
-          "unit": "s",
-          "unitScale": true
+          "unit": "s"
         },
         "overrides": []
       },

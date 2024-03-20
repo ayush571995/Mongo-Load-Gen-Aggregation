@@ -7,6 +7,9 @@ x-environment:
   OP_NAME: 'toLower'
   RESULT_FIELD: 'toLowerField'
   EXPRESSION: "{$$toLower: '$$name' }"
+
+#  Can be either aggregate or pipeline and based on that the api will be called
+  INPUT_TYPE: ''
 services:
   app:
     build: .

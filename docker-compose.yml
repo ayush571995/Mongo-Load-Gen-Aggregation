@@ -3,13 +3,13 @@ version: '3.8'
 x-environment:
   &default-environment
   MONGODB_URL:
-  COLLECTION: 'toLower'
-  OP_NAME: 'toLower'
-  RESULT_FIELD: 'toLowerField'
-  EXPRESSION: "{$$toLower: '$$name' }"
+  COLLECTION: 'firstN'
+  OP_NAME: 'firstN'
+  RESULT_FIELD: ''
+  EXPRESSION: "[{\"$$project\":{\"nameList\":{\"$$firstN\":{\"n\":50,\"input\":\"$$name\"}}}}]"
 
 #  Can be either aggregate or pipeline and based on that the api will be called
-  INPUT_TYPE: ''
+  INPUT_TYPE: 'pipeline'
 services:
   app:
     build: .
